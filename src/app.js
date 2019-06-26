@@ -2,7 +2,6 @@
  * Styles
  */
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles.scss';
 
 /**
  * JS
@@ -10,6 +9,7 @@ import './styles.scss';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes'
+import App from './App.vue'
 
 Vue.use(VueRouter);
 
@@ -19,8 +19,9 @@ export default (function () {
     mode: "history"
   });
 
-  new Vue({
+  const app = new Vue({
     el: '#app',
-    router
+    router,
+    render: h => h(App)
   })
 }());

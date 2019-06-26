@@ -1,5 +1,5 @@
-import RoomList from './components/rooms-list/rooms-list';
-import RoomDetails from './components/room-details/room-details';
+import RoomList from './components/rooms-list/RoomList.vue';
+import RoomDetails from './components/room-details/RoomDetails.vue';
 
 const routes = [
   { path: '/', component: RoomList },
