@@ -1,5 +1,5 @@
 <template>
-	<div class="card">
+	<div v-if="room" class="card">
 		<div class="card-header">Room {{room.code}}</div>
 		<div class="card-body">
 			<p>
@@ -17,20 +17,27 @@
 
 </template>
 <script>
-  import rooms from '../../../data/rooms.json'; // TODO: make real API call
   import * as moment from "moment";
-  import ConsentForms from '../consent-forms/ConsentForms.vue'; // TODO: make real API call
+  import ConsentForms from '../consent-forms/ConsentForms.vue';
+  import { getRooms } from "../../services/api";
 
 	export default {
 	  name: 'room-details',
     components: {ConsentForms},
+		data() {
+	    return {
+	      room: null
+	    }
+		},
     created() {
-      this.room = this.getRoom();
-      this.date = this.room.appointment.start_date;
-      this.vitalSigns = this.room.appointment.vital_signs;
+      this.getRoom().then(room => {
+        this.room = room;
+        this.date = room.appointment.start_date;
+        this.vitalSigns = room.appointment.vital_signs;
+      });
     },
     methods: {
-      getRoom() {
+      async getRoom() {
         let id = this.$route.params.id;
         if (!id) {
           throw new Error('ID param is required');
@@ -42,6 +49,7 @@
           throw new Error('Wrong id param passed');
         }
 
+        const rooms = await getRooms();
         const targetRoom = rooms.find(room => room.code === id);
 
         if (!targetRoom) {

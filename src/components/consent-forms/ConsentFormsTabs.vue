@@ -33,7 +33,9 @@
 </template>
 
 <script>
-	export default {
+	import { getConsentFormDetails } from "../../services/api";
+
+  export default {
 	  name: 'consent-forms-tabs',
 		props: ['tabs', 'initials'],
 		data() {
@@ -65,21 +67,10 @@
 	      this.loadTabContent();
       },
 	    loadTabContent() {
-	      // TODO make api calls instead
-		    const promise = ((code) => {
-          switch (code) {
-            case 'extraction':
-              return import(`../../../data/consent-form-details/extraction.json`);
-            case 'implant':
-              return import(`../../../data/consent-form-details/implant.json`);
-            case 'bone_graft':
-              return import(`../../../data/consent-form-details/bone_graft.json`);
-            case 'sinus_lift':
-              return import(`../../../data/consent-form-details/sinus_lift.json`);
-          }
-		    })(this.selectedTab.code);
-
-        promise.then(res => this.contentItems = res.default);
+        getConsentFormDetails(this.selectedTab.code)
+	        .then(res => {
+	          this.contentItems = res;
+	        });
 	    },
       isSelectedCheckbox(item) {
 	      return this.checkedInitials.includes(item);
