@@ -1,5 +1,17 @@
-// Entry point for project
+/**
+ * Styles
+ */
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.scss';
+
+/**
+ * JS
+ */
+import Vue from 'vue';
+
+import './components/rooms-list/rooms-list';
+import './components/room/room';
 
 export default (function () {
-  document.getElementById("app").innerHTML = "<h1>Hello from Docapp</h1>";
+  new Vue({ el: '#app'});
 }());

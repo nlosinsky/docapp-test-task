@@ -1,0 +1,15 @@
+<div class="card mb-3">
+	<div class="card-body">
+		<h5 class="card-title">
+			Room {{room.code}} ({{room.appointment.code}})
+			<small class="badge badge-info">{{room.status.title}}</small>
+		</h5>
+		<h6 class="card-subtitle mb-2 text-muted">{{appointmentTime}} / {{timeSinceLastUpdate}}</h6>
+
+		<div class="row">
+			<span class="col">{{room.appointment.first_name}} {{room.appointment.last_name}}</span>
+			<span class="col">(D: {{room.appointment.doctor_title}})</span>
+			<span class="col">(A: {{room.appointment.assistant}})</span>
+		</div>
+	</div>
+</div>
