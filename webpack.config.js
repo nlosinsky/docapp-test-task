@@ -42,11 +42,12 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+      'vue$': 'vue/dist/vue.esm.js'
     }
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
+    historyApiFallback: true,
     open: false,
     port: 9000,
     before: function(app, server) {

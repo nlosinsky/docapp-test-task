@@ -8,10 +8,19 @@ import './styles.scss';
  * JS
  */
 import Vue from 'vue';
+import VueRouter from 'vue-router';
+import routes from './routes'
 
-import './components/rooms-list/rooms-list';
-import './components/room/room';
+Vue.use(VueRouter);
 
 export default (function () {
-  new Vue({ el: '#app'});
+  const router = new VueRouter({
+    routes,
+    mode: "history"
+  });
+
+  new Vue({
+    el: '#app',
+    router
+  })
 }());

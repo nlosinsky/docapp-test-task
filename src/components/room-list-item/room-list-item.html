@@ -4,7 +4,7 @@
 			Room {{room.code}} ({{room.appointment.code}})
 			<small class="badge badge-info">{{room.status.title}}</small>
 		</h5>
-		<h6 class="card-subtitle mb-2 text-muted">{{appointmentTime}} / {{timeSinceLastUpdate}}</h6>
+		<h6 class="card-subtitle mb-2 text-muted">Appointment time: {{appointmentTime}} / Last update {{timeSinceLastUpdate}} ago</h6>
 
 		<div class="row">
 			<span class="col">{{room.appointment.first_name}} {{room.appointment.last_name}}</span>

@@ -1,21 +1,11 @@
 import Vue from 'vue';
-import template from './room.html';
+import template from './room-list-item.html';
 import * as moment from 'moment';
 import * as momentDuration from 'moment-duration-format';
+
 momentDuration(moment);
 
-Vue.component('room', {
-  template,
-  props: ['room'],
-  data() {
-    return {
-      appointmentTime: moment(this.room.appointment.start_time, 'HH:mm').format('hh:mm A'),
-      timeSinceLastUpdate: getTimeDiff(this.room.update_time)
-    }
-  }
-});
-
-// TODO: add countdown
+// TODO: add timer
 function getTimeDiff(time) {
   const updateTime = moment(time);
   const formattedTime = [updateTime.hours(), updateTime.minutes(), updateTime.seconds()].join(':');
@@ -29,3 +19,14 @@ function getTimeDiff(time) {
 
   return moment.duration(diff, "milliseconds").format('HH:mm:SS')
 }
+
+export default Vue.component('room-list-item', {
+  template,
+  props: ['room'],
+  data() {
+    return {
+      appointmentTime: moment(this.room.appointment.start_time, 'HH:mm').format('hh:mm A'),
+      timeSinceLastUpdate: getTimeDiff(this.room.update_time)
+    }
+  }
+});
