@@ -5,7 +5,7 @@ import RoomListItem from '../room-list-item/room-list-item';
 
 export default Vue.component('rooms-list', {
   template,
-  comments: [RoomListItem],
+  components: {RoomListItem},
   data() {
     return {
       rooms

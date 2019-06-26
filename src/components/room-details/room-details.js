@@ -2,12 +2,14 @@ import Vue from 'vue';
 import template from './room-details.html';
 import rooms from '../../../data/rooms.json'; // TODO: make real API call
 import * as moment from "moment";
+import ConsentForms from '../consent-forms/consent-forms';
 
 export default Vue.component('room-details', {
   template,
+  components: {ConsentForms},
   created() {
     this.room = this.getRoom();
-    this.date = this.room.start_date;
+    this.date = this.room.appointment.start_date;
     this.vitalSigns = this.room.appointment.vital_signs;
   },
   methods: {

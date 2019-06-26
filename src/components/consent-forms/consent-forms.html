@@ -1,0 +1,28 @@
+<div>
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" v-model="selectAll" id="selectAll">
+		<label class="form-check-label" for="selectAll">
+			<span v-if="selectAll">Deselect</span>
+			<span v-if="!selectAll">Select</span>
+			all
+		</label>
+	</div>
+
+	<ul class="consent-forms-list mb-3">
+		<li v-for="form in forms" class="consent-forms-list__item">
+			<div class="form-check">
+				<input v-model="selected"
+				       :value="form"
+				       v-bind:id="form.id"
+				       class="form-check-input"
+				       type="checkbox"
+				>
+				<label class="form-check-label" v-bind:for="form.id">
+					{{form.title}}
+				</label>
+			</div>
+		</li>
+	</ul>
+
+	<button v-if="selected.length" type="button" class="btn btn-primary px-4">Sign</button>
+</div>
