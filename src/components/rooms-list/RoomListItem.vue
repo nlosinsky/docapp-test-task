@@ -29,12 +29,26 @@
     data() {
       return {
         appointmentTime: moment(this.room.appointment.start_time, 'HH:mm').format('hh:mm A'),
-        timeSinceLastUpdate: getTimeDiff(this.room.update_time)
+        timeSinceLastUpdate: 0
       }
-    }
-	}
+    },
+		created() {
+      this.updateLastTime();
 
-  // TODO: add timer
+	    this.timerRef = setInterval(() => {
+	      this.updateLastTime();
+	    }, 1000)
+    },
+    beforeDestroy() {
+	    clearInterval(this.timerRef);
+    },
+		methods: {
+	    updateLastTime() {
+        this.timeSinceLastUpdate = getTimeDiff(this.room.update_time);
+	    }
+		}
+  }
+
   function getTimeDiff(time) {
     const updateTime = moment(time);
     const formattedTime = [updateTime.hours(), updateTime.minutes(), updateTime.seconds()].join(':');
